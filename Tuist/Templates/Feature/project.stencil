@@ -1,0 +1,56 @@
+import ProjectDescription
+
+let project = Project(
+    name: "{{ name }}Feature",
+    targets: [
+        .target(
+            name: "{{ name }}Example",
+            destinations: [.iPhone],
+            product: .app,
+            bundleId: "{{ name }}ExampleApp",
+            infoPlist: .file(path: "FeatureExample/Info.plist"),
+            sources: ["FeatureExample/**"],
+            dependencies: [
+                .target(name: "{{ name }}Feature")
+            ]
+        ),
+        .target(
+            name: "{{ name }}Interface",
+            destinations: [.iPhone],
+            product: .staticLibrary,
+            bundleId: "",
+            sources: ["FeatureInterface/**"]
+        ),
+        .target(
+            name: "{{ name }}Feature",
+            destinations: [.iPhone],
+            product: .staticLibrary,
+            bundleId: "",
+            sources: ["Feature/**"],
+            dependencies: [
+                .target(name: "{{ name }}Interface")
+            ]
+        ),
+        .target(
+            name: "{{ name }}Tests",
+            destinations: [.iPhone],
+            product: .unitTests,
+            bundleId: "",
+            sources: ["FeatureTests/**"],
+            dependencies: [
+                .target(name: "{{ name }}Feature"),
+                .target(name: "{{ name }}Testing")
+            ]
+        ),
+        .target(
+            name: "{{ name }}Testing",
+            destinations: [.iPhone],
+            product: .staticLibrary,
+            bundleId: "",
+            sources: ["FeatureTesting/**"],
+            dependencies: [
+                .target(name: "{{ name }}Interface")
+            ]
+        )
+    ]
+)
