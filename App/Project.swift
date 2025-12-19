@@ -5,7 +5,7 @@ let project = Project(
     targets: [
         .target(
             name: "TestCount",
-            destinations: .iOS,
+            destinations: [.iPhone],
             product: .app,
             bundleId: "com.tuist.TestCount",
             infoPlist: .extendingDefault(
@@ -15,7 +15,12 @@ let project = Project(
             ),
             sources: ["Sources/**"],
             resources: ["Resources/**"],
-            dependencies: []
+            dependencies: [
+                .project(
+                    target: "HomeFeature",
+                    path: "../Features/Home"
+                )
+            ]
         )
     ]
 )

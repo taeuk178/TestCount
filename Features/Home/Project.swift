@@ -1,55 +1,56 @@
 import ProjectDescription
 
 let project = Project(
-    name: "{{ name }}Feature",
+    name: "HomeFeature",
     targets: [
         .target(
-            name: "{{ name }}Example",
+            name: "HomeExample",
             destinations: [.iPhone],
             product: .app,
-            bundleId: "com.tuist.{{ name }}ExampleApp",
+            bundleId: "com.tuist.HomeExampleApp",
             infoPlist: .default,
             sources: ["FeatureExample/**"],
             dependencies: [
-                .target(name: "{{ name }}Feature")
+                .target(name: "HomeFeature"),
+                .target(name: "HomeTesting")
             ]
         ),
         .target(
-            name: "{{ name }}Interface",
+            name: "HomeInterface",
             destinations: [.iPhone],
             product: .staticLibrary,
             bundleId: "",
             sources: ["FeatureInterface/**"]
         ),
         .target(
-            name: "{{ name }}Feature",
+            name: "HomeFeature",
             destinations: [.iPhone],
             product: .staticLibrary,
             bundleId: "",
             sources: ["Feature/**"],
             dependencies: [
-                .target(name: "{{ name }}Interface")
+                .target(name: "HomeInterface")
             ]
         ),
         .target(
-            name: "{{ name }}Tests",
+            name: "HomeTests",
             destinations: [.iPhone],
             product: .unitTests,
             bundleId: "",
             sources: ["FeatureTests/**"],
             dependencies: [
-                .target(name: "{{ name }}Feature"),
-                .target(name: "{{ name }}Testing")
+                .target(name: "HomeFeature"),
+                .target(name: "HomeTesting")
             ]
         ),
         .target(
-            name: "{{ name }}Testing",
+            name: "HomeTesting",
             destinations: [.iPhone],
             product: .staticLibrary,
             bundleId: "",
             sources: ["FeatureTesting/**"],
             dependencies: [
-                .target(name: "{{ name }}Interface")
+                .target(name: "HomeInterface")
             ]
         )
     ]
