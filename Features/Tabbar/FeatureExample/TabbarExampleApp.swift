@@ -2,10 +2,10 @@
 //  example.swift
 
 import SwiftUI
-import HomeFeature
+import TabbarFeature
 
 @main
-struct HomeExampleApp: App {
+struct TabbarExampleApp: App {
     var body: some Scene {
         WindowGroup {
             Text("Test")

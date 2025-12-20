@@ -4,6 +4,7 @@ let workspace = Workspace(
     name: "TestCount",
     projects: [
         "App",
-        "Features/**"
+        "Features/**",
+        "Modules/**"
     ]
 )

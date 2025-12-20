@@ -1,4 +1,5 @@
 import ProjectDescription
+import ProjectDescriptionHelpers
 
 let project = Project(
     name: "TabbarFeature",
@@ -29,7 +30,12 @@ let project = Project(
             bundleId: "",
             sources: ["Feature/**"],
             dependencies: [
-                .target(name: "TabbarInterface")
+                .target(name: "TabbarInterface"),
+                .project(
+                    target: "HomeInterface",
+                    path: "../Home"
+                ),
+                .library(.TestShared)
             ]
         ),
         .target(

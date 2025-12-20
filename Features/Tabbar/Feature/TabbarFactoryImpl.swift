@@ -2,15 +2,23 @@
 
 import Foundation
 import SwiftUI
-import TabbarInterface
 
-public class TabbarFactoryImpl: TabbarFactory {
-    
-    public init() { }
+import TabbarInterface
+import HomeInterface
+import TestShared
+
+public protocol TabbarFactoryDependency {
+    var homeFactory: HomeFactory { get }
+//    var settingFactory: SettingFactory { get }
+}
+
+public class TabbarFactoryImpl: Factory<TabbarFactoryDependency>, TabbarFactory {
     
     public func makeView() -> AnyView {
         return AnyView(
-            TabbarView()
+            TabbarView(
+                homeFactory: external.homeFactory
+            )
         )
     }
 }

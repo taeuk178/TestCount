@@ -20,7 +20,7 @@ public enum ThirdParty: String {
 
 public enum LibraryModule: String {
     case NetworkKit
-    case TMAShared
+    case TestShared
 }
 
 public extension TargetDependency {

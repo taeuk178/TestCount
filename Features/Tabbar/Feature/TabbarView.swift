@@ -2,9 +2,21 @@
 
 import SwiftUI
 
-struct TabbarView: View {
+import HomeInterface
+
+public struct TabbarView: View {
     
-    var body: some View {
-        Text("123")
+    private let homeFactory: HomeFactory
+    
+    public init(
+        homeFactory: HomeFactory
+    ) {
+        self.homeFactory = homeFactory
+    }
+    
+    public var body: some View {
+        TabView {
+            homeFactory.makeView()
+        }
     }
 }

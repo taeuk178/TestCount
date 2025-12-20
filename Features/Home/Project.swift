@@ -1,4 +1,5 @@
 import ProjectDescription
+import ProjectDescriptionHelpers
 
 let project = Project(
     name: "HomeFeature",
@@ -28,7 +29,8 @@ let project = Project(
             bundleId: "",
             sources: ["Feature/**"],
             dependencies: [
-                .target(name: "HomeInterface")
+                .target(name: "HomeInterface"),
+                .library(.TestShared)
             ]
         ),
         .target(
