@@ -17,6 +17,10 @@ let project = Project(
             resources: ["Resources/**"],
             dependencies: [
                 .project(
+                    target: "TabbarFeature",
+                    path: "../Features/Tabbar"
+                ),
+                .project(
                     target: "HomeFeature",
                     path: "../Features/Home"
                 )

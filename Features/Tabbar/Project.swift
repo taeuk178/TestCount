@@ -1,55 +1,56 @@
 import ProjectDescription
 
 let project = Project(
-    name: "HomeFeature",
+    name: "TabbarFeature",
     targets: [
         .target(
-            name: "HomeExample",
+            name: "TabbarExample",
             destinations: [.iPhone],
             product: .app,
-            bundleId: "com.tuist.HomeExampleApp",
+            bundleId: "com.tuist.TabbarExampleApp",
             infoPlist: .default,
             sources: ["FeatureExample/**"],
             dependencies: [
-                .target(name: "HomeFeature")
+                .target(name: "TabbarFeature"),
+                .target(name: "TabbarTesting")
             ]
         ),
         .target(
-            name: "HomeInterface",
+            name: "TabbarInterface",
             destinations: [.iPhone],
             product: .staticLibrary,
             bundleId: "",
             sources: ["FeatureInterface/**"]
         ),
         .target(
-            name: "HomeFeature",
+            name: "TabbarFeature",
             destinations: [.iPhone],
             product: .staticLibrary,
             bundleId: "",
             sources: ["Feature/**"],
             dependencies: [
-                .target(name: "HomeInterface")
+                .target(name: "TabbarInterface")
             ]
         ),
         .target(
-            name: "HomeTests",
+            name: "TabbarTests",
             destinations: [.iPhone],
             product: .unitTests,
             bundleId: "",
             sources: ["FeatureTests/**"],
             dependencies: [
-                .target(name: "HomeFeature"),
-                .target(name: "HomeTesting")
+                .target(name: "TabbarFeature"),
+                .target(name: "TabbarTesting")
             ]
         ),
         .target(
-            name: "HomeTesting",
+            name: "TabbarTesting",
             destinations: [.iPhone],
             product: .staticLibrary,
             bundleId: "",
             sources: ["FeatureTesting/**"],
             dependencies: [
-                .target(name: "HomeInterface")
+                .target(name: "TabbarInterface")
             ]
         )
     ]
