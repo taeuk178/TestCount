@@ -8,7 +8,7 @@ import TabbarFeature
 struct TabbarExampleApp: App {
     var body: some Scene {
         WindowGroup {
-            Text("Test")
+            MaintenanceView()
         }
     }
 }
