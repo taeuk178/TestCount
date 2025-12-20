@@ -12,7 +12,8 @@ struct TestCountApp: App {
     var body: some Scene {
         WindowGroup {
             TabbarView(
-                homeFactory: appDependency.homeFactory
+                homeFactory: appDependency.homeFactory,
+                settingFactory: appDependency.settingFactory
             )
         }
     }

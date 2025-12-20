@@ -23,6 +23,10 @@ let project = Project(
                 .project(
                     target: "HomeFeature",
                     path: "../Features/Home"
+                ),
+                .project(
+                    target: "SettingFeature",
+                    path: "../Features/Setting"
                 )
             ]
         )

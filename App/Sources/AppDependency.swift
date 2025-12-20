@@ -11,8 +11,10 @@ import TabbarFeature
 import TabbarInterface
 import HomeFeature
 import HomeInterface
+import SettingFeature
+import SettingInterface
 
-final class AppDependency: TabbarFactoryDependency, HomeFactoryDependency {
+final class AppDependency: TabbarFactoryDependency, HomeFactoryDependency, SettinFactoryDependency {
     
     static let shared = AppDependency()
     
@@ -24,5 +26,9 @@ final class AppDependency: TabbarFactoryDependency, HomeFactoryDependency {
     
     var homeFactory: HomeFactory {
         return HomeFactoryImpl(external: self)
+    }
+    
+    var settingFactory: SettingFactory {
+        return SettingFactoryImpl(external: self)
     }
 }

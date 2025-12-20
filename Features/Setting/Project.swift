@@ -2,65 +2,56 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project(
-    name: "TabbarFeature",
+    name: "SettingFeature",
     targets: [
         .target(
-            name: "TabbarExample",
+            name: "SettingExample",
             destinations: [.iPhone],
             product: .app,
-            bundleId: "com.tuist.TabbarExampleApp",
+            bundleId: "com.tuist.SettingExampleApp",
             infoPlist: .default,
             sources: ["FeatureExample/**"],
             dependencies: [
-                .target(name: "TabbarFeature"),
-                .target(name: "TabbarTesting")
+                .target(name: "SettingFeature")
             ]
         ),
         .target(
-            name: "TabbarInterface",
+            name: "SettingInterface",
             destinations: [.iPhone],
             product: .staticLibrary,
             bundleId: "",
             sources: ["FeatureInterface/**"]
         ),
         .target(
-            name: "TabbarFeature",
+            name: "SettingFeature",
             destinations: [.iPhone],
             product: .staticLibrary,
             bundleId: "",
             sources: ["Feature/**"],
             dependencies: [
-                .target(name: "TabbarInterface"),
-                .project(
-                    target: "HomeInterface",
-                    path: "../Home"
-                ),
-                .project(
-                    target: "SettingInterface",
-                    path: "../Setting"
-                ),
+                .target(name: "SettingInterface"),
                 .library(.TestShared)
             ]
         ),
         .target(
-            name: "TabbarTests",
+            name: "SettingTests",
             destinations: [.iPhone],
             product: .unitTests,
             bundleId: "",
             sources: ["FeatureTests/**"],
             dependencies: [
-                .target(name: "TabbarFeature"),
-                .target(name: "TabbarTesting")
+                .target(name: "SettingFeature"),
+                .target(name: "SettingTesting")
             ]
         ),
         .target(
-            name: "TabbarTesting",
+            name: "SettingTesting",
             destinations: [.iPhone],
             product: .staticLibrary,
             bundleId: "",
             sources: ["FeatureTesting/**"],
             dependencies: [
-                .target(name: "TabbarInterface")
+                .target(name: "SettingInterface")
             ]
         )
     ]
