@@ -8,7 +8,7 @@ import HomeFeature
 struct HomeExampleApp: App {
     var body: some Scene {
         WindowGroup {
-            Text("\(Home)")
+            Text("Test")
         }
     }
 }

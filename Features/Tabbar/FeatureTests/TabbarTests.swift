@@ -1,9 +1,9 @@
 
 import XCTest
-import HomeTesting
-@testable import HomeFeature
+import TabbarTesting
+@testable import TabbarFeature
 
-final class HomeTests: XCTestCase {
+final class TabbarTests: XCTestCase {
 
     override func setUpWithError() throws {
 

@@ -16,20 +16,55 @@ let template = Template(
     ],
     items: [
         .string(
-            path: "Features/\(nameAttribute)/Feature/\(nameAttribute)ViewController.swift",
-            contents: "//My template contents of name \(nameAttribute)"
+            path: "Features/\(nameAttribute)/Feature/\(nameAttribute)View.swift",
+            contents: """
+                
+                import Foundation
+                import SwiftUI
+
+                struct {{ name }}View: View {
+                    
+                    var body: some View {
+                        Text("{{ name }}View")
+                    }
+                }
+                """
         ),
         .string(
             path: "Features/\(nameAttribute)/Feature/\(nameAttribute)FactoryImpl.swift",
-            contents: "//My template contents of name \(nameAttribute)"
+            contents: """
+                
+                import Foundation
+                import SwiftUI
+                import {{ name }}Interface
+                
+                public class {{ name }}FactoryImpl: {{ name }}Factory {
+                    
+                    public init() { }
+                    
+                    public func makeView() -> AnyView {
+                        return AnyView(
+                            {{ name }}View()
+                        )
+                    }
+                }
+                """
         ),
         .file(
             path: "Features/\(nameAttribute)/Project.swift",
             templatePath: "project.stencil"
 		),
 		.string(
-			path: "Features/\(nameAttribute)/FeatureInterface/\(nameAttribute)Interface.swift",
-			contents: "//My template contents of name \(nameAttribute)"
+			path: "Features/\(nameAttribute)/FeatureInterface/\(nameAttribute)Factory.swift",
+			contents: """
+                
+                import Foundation
+                import SwiftUI
+
+                public protocol {{ name }}Factory {
+                    func makeView() -> AnyView
+                }
+                """
 		),
 		.file(
 			path: "Features/\(nameAttribute)/FeatureExample/\(nameAttribute)ExampleApp.swift",

@@ -8,7 +8,7 @@ import {{ name }}Feature
 struct {{ name }}ExampleApp: App {
     var body: some Scene {
         WindowGroup {
-            Text("\({{ name }})")
+            Text("{{ name }}View")
         }
     }
 }
