@@ -3,9 +3,11 @@ import SwiftUI
 
 import HomeInterface
 
-struct HomeView: View {
+public struct HomeView: View {
     
-    var body: some View {
+    public init() { }
+    
+    public var body: some View {
         VStack(spacing: 40) {
             
             Text("캘린더 화면")

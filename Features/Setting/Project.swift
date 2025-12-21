@@ -9,7 +9,11 @@ let project = Project(
             destinations: [.iPhone],
             product: .app,
             bundleId: "com.tuist.TestCount",
-            infoPlist: .default,
+            infoPlist: .extendingDefault(
+                with: [
+                    "UILaunchStoryboardName": "LaunchScreen.storyboard",
+                ]
+            ),
             sources: ["FeatureExample/**"],
             dependencies: [
                 .target(name: "SettingFeature")
