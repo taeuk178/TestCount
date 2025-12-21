@@ -16,11 +16,14 @@ public let supabase = SupabaseClient(
 public enum SupabaseManager {
     
     case appMaintenance
+    case exerciseList
     
     public var path: String {
         switch self {
         case .appMaintenance:
             return "/rest/v1/App_Maintenance"
+        case .exerciseList:
+            return "/rest/v1/exerciseList"
         }
     }
     

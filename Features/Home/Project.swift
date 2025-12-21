@@ -34,7 +34,8 @@ let project = Project(
             sources: ["Feature/**"],
             dependencies: [
                 .target(name: "HomeInterface"),
-                .library(.TestShared)
+                .library(.TestShared),
+                .library(.NetworkKit)
             ]
         ),
         .target(
