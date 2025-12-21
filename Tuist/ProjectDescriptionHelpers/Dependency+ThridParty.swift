@@ -9,13 +9,8 @@ import Foundation
 import ProjectDescription
 
 public enum ThirdParty: String {
-    case Then
-    case SnapKit
-    case RxSwift
-    case RxCocoa
-    case ReactorKit
     case Moya
-    case DGCharts
+    case Supabase
 }
 
 public enum LibraryModule: String {

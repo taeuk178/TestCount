@@ -7,7 +7,7 @@ let project = Project(
             name: "{{ name }}Example",
             destinations: [.iPhone],
             product: .app,
-            bundleId: "com.tuist.{{ name }}ExampleApp",
+            bundleId: "com.tuist.TestCount",
             infoPlist: .default,
             sources: ["FeatureExample/**"],
             dependencies: [

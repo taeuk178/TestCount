@@ -8,7 +8,7 @@ let project = Project(
             name: "TabbarExample",
             destinations: [.iPhone],
             product: .app,
-            bundleId: "com.tuist.TabbarExampleApp",
+            bundleId: "com.tuist.TestCount",
             infoPlist: .default,
             sources: ["FeatureExample/**"],
             dependencies: [
@@ -39,7 +39,8 @@ let project = Project(
                     target: "SettingInterface",
                     path: "../Setting"
                 ),
-                .library(.TestShared)
+                .library(.TestShared),
+                .library(.NetworkKit)
             ]
         ),
         .target(
