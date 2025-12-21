@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Kind</key>
+	<string>Xcode.IDEFoundation.TextSubstitutionFileTemplateKind</string>
+	<key>Summary</key>
+	<string>Feature Module with MVVM + Clean Architecture</string>
+	<key>Description</key>
+	<string>Creates a feature module folder with View, ViewModel, UseCase, Model, and API files following clean architecture pattern.</string>
+	<key>Platforms</key>
+	<array>
+		<string>com.apple.platform.iphoneos</string>
+	</array>
+	<key>DefaultCompletionName</key>
+	<string>FeatureName</string>
+	<key>Options</key>
+	<array>
+		<dict>
+			<key>Identifier</key>
+			<string>productName</string>
+			<key>Required</key>
+			<true/>
+			<key>Name</key>
+			<string>Feature Name:</string>
+			<key>Description</key>
+			<string>The name of the feature module (e.g., ExerciseList, UserProfile)</string>
+			<key>Type</key>
+			<string>text</string>
+			<key>Default</key>
+			<string>FeatureName</string>
+		</dict>
+		<dict>
+			<key>Identifier</key>
+			<string>apiEndpoint</string>
+			<key>Required</key>
+			<false/>
+			<key>Name</key>
+			<string>API Endpoint Path:</string>
+			<key>Description</key>
+			<string>API endpoint path (e.g., /rest/v1/ExerciseList)</string>
+			<key>Type</key>
+			<string>text</string>
+			<key>Default</key>
+			<string>/rest/v1/YourEndpoint</string>
+		</dict>
+	</array>
+</dict>
+</plist>
