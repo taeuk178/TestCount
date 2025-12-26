@@ -9,6 +9,7 @@ let project = Project(
             destinations: [.iPhone],
             product: .app,
             bundleId: "com.tuist.TestCount",
+            deploymentTargets: .iOS("26.0"),
             infoPlist: .extendingDefault(
                 with: [
                     "UILaunchStoryboardName": "LaunchScreen.storyboard",
@@ -35,7 +36,8 @@ let project = Project(
             dependencies: [
                 .target(name: "HomeInterface"),
                 .library(.TestShared),
-                .library(.NetworkKit)
+                .library(.NetworkKit),
+                .thirdParty(.HorizonCalendar)
             ]
         ),
         .target(

@@ -1,14 +1,16 @@
 
 import SwiftUI
+import SwiftData
 
 import TabbarFeature
 import HomeFeature
+import TestShared
 
 @main
 struct TestCountApp: App {
-    
+
     private let appDependency = AppDependency.shared
-    
+
     var body: some Scene {
         WindowGroup {
             TabbarView(
@@ -16,5 +18,6 @@ struct TestCountApp: App {
                 settingFactory: appDependency.settingFactory
             )
         }
+        .modelContainer(for: [WorkoutRecord.self])
     }
 }

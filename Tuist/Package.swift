@@ -22,6 +22,10 @@ let package = Package(
         .package(
             url: "https://github.com/Moya/Moya",
             from: "15.0.3"
+        ),
+        .package(
+            url: "https://github.com/airbnb/HorizonCalendar.git",
+            from: "1.16.0"
         )
     ]
 )

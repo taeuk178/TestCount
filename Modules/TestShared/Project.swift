@@ -9,7 +9,7 @@ let project = Project(
             destinations: [.iPhone],
             product: .staticFramework,
             bundleId: "com.tuist.TestShared",
-            deploymentTargets: .iOS("14.0"),
+            deploymentTargets: .iOS("26.0"),
             infoPlist: .default,
             sources: ["Sources/**"],
             dependencies: [

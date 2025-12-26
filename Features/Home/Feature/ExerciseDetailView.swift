@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
+import TestShared
 
 // MARK: - Exercise Detail View
 
@@ -15,11 +17,24 @@ struct ExerciseDetailView: View {
     let exerciseName: String
     let onDismissAll: () -> Void
     @Environment(\.dismiss) var dismiss
+    @Environment(\.modelContext) private var modelContext
 
     @State private var sets: Int = 3
     @State private var reps: Int = 10
     @State private var isCompleted: Bool = false
     @State private var showingResultSheet: Bool = false
+
+    // SwiftData에 운동 기록 저장
+    private func saveWorkout() {
+        let workout = WorkoutRecord(
+            date: Date(),
+            exerciseName: exerciseName,
+            sets: sets,
+            reps: reps
+        )
+        modelContext.insert(workout)
+        try? modelContext.save()
+    }
 
     var body: some View {
         NavigationStack {
@@ -67,6 +82,7 @@ struct ExerciseDetailView: View {
 
                 // 완료 버튼
                 Button {
+                    saveWorkout()
                     isCompleted = true
                     showingResultSheet = true
                 } label: {

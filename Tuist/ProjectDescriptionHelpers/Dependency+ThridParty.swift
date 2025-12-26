@@ -11,6 +11,7 @@ import ProjectDescription
 public enum ThirdParty: String {
     case Moya
     case Supabase
+    case HorizonCalendar
 }
 
 public enum LibraryModule: String {
