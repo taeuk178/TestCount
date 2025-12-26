@@ -11,14 +11,27 @@ import HorizonCalendar
 
 struct CalendarViewRepresentable: UIViewRepresentable {
     let exerciseDates: Set<Date>
+    let onDateSelected: (Date) -> Void
 
     func makeUIView(context: Context) -> CalendarView {
         let calendarView = CalendarView(initialContent: makeContent())
+        calendarView.daySelectionHandler = { day in
+            let calendar = Calendar.current
+            if let selectedDate = calendar.date(from: day.components) {
+                self.onDateSelected(selectedDate)
+            }
+        }
         return calendarView
     }
 
     func updateUIView(_ uiView: CalendarView, context: Context) {
         uiView.setContent(makeContent())
+        uiView.daySelectionHandler = { day in
+            let calendar = Calendar.current
+            if let selectedDate = calendar.date(from: day.components) {
+                self.onDateSelected(selectedDate)
+            }
+        }
     }
 
     private func makeContent() -> CalendarViewContent {

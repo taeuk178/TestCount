@@ -5,12 +5,17 @@ import SwiftData
 import HomeInterface
 import TestShared
 
+enum HomeNavigationDestination: Hashable {
+    case exerciseList
+    case workoutHistory(Date)
+}
+
 public struct HomeView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \WorkoutRecord.date, order: .reverse) private var workouts: [WorkoutRecord]
 
-    @State private var navigationPath = NavigationPath()
+    @State private var navigationPath: [HomeNavigationDestination] = []
 
     // SwiftData에서 운동한 날짜들 가져오기
     private var exerciseDates: Set<Date> {
@@ -75,21 +80,31 @@ public struct HomeView: View {
         NavigationStack(path: $navigationPath) {
             ScrollView {
                 VStack(spacing: 30) {
-                    CalendarViewRepresentable(exerciseDates: exerciseDates)
-                        .frame(width: 300, height: 300)
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(
-                                cornerRadius: 16
-                            )
-                            .stroke(
-                                Color.black,
-                                lineWidth: 2
-                            )
+                    CalendarViewRepresentable(
+                        exerciseDates: exerciseDates,
+                        onDateSelected: { date in
+                            // 해당 날짜에 운동 기록이 있을 때만 push
+                            let calendar = Calendar.current
+                            let selectedDayStart = calendar.startOfDay(for: date)
+                            if exerciseDates.contains(selectedDayStart) {
+                                navigationPath.append(.workoutHistory(date))
+                            }
+                        }
+                    )
+                    .frame(width: 300, height: 300)
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(
+                            cornerRadius: 16
                         )
+                        .stroke(
+                            Color.black,
+                            lineWidth: 2
+                        )
+                    )
 
                     Button {
-                        navigationPath.append("ExerciseList")
+                        navigationPath.append(.exerciseList)
                     } label: {
                         Text("운동하기")
                             .font(.headline)
@@ -117,11 +132,14 @@ public struct HomeView: View {
                 }
             }
             .padding(.top, 20)
-            .navigationDestination(for: String.self) { destination in
-                if destination == "ExerciseList" {
+            .navigationDestination(for: HomeNavigationDestination.self) { destination in
+                switch destination {
+                case .exerciseList:
                     ExerciseListView(onDismissAll: {
-                        navigationPath.removeLast(navigationPath.count)
+                        navigationPath.removeAll()
                     })
+                case .workoutHistory(let date):
+                    WorkoutHistoryView(selectedDate: date)
                 }
             }
         }
