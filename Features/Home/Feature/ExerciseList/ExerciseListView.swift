@@ -8,6 +8,12 @@
 import SwiftUI
 import NetworkKit
 
+// Identifiable wrapper for String
+struct IdentifiableExercise: Identifiable {
+    let id = UUID()
+    let name: String
+}
+
 struct ExerciseListView: View {
 
     let onDismissAll: () -> Void
@@ -22,8 +28,7 @@ struct ExerciseListView: View {
     ]
 
     // Sheet 표시 상태
-    @State private var selectedExercise: String?
-    @State private var showingExerciseSheet = false
+    @State private var selectedExercise: IdentifiableExercise?
 
     init(onDismissAll: @escaping () -> Void) {
         self.onDismissAll = onDismissAll
@@ -63,8 +68,7 @@ struct ExerciseListView: View {
                     ForEach(viewModel.exercises, id: \.self) { exercise in
                         ExerciseCell(title: exercise)
                             .onTapGesture {
-                                selectedExercise = exercise
-                                showingExerciseSheet = true
+                                selectedExercise = IdentifiableExercise(name: exercise)
                             }
                     }
                 }
@@ -73,17 +77,11 @@ struct ExerciseListView: View {
         }
         .navigationTitle("운동 선택")
         .navigationBarTitleDisplayMode(.inline)
-        .refreshable {
-            // Pull-to-refresh
-            await viewModel.loadExercises(forceRefresh: true)
-        }
-        .sheet(isPresented: $showingExerciseSheet) {
-            if let exercise = selectedExercise {
-                ExerciseDetailView(
-                    exerciseName: exercise,
-                    onDismissAll: onDismissAll
-                )
-            }
+        .sheet(item: $selectedExercise) { exercise in
+            ExerciseDetailView(
+                exerciseName: exercise.name,
+                onDismissAll: onDismissAll
+            )
         }
     }
 }
